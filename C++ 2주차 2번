@@ -1,0 +1,111 @@
+2번 과제)
+
+#include <iostream>
+
+using namespace std;
+
+int main(void) {
+
+int seat[10][6] = {};
+int a, width, length, new_length, new_width;
+
+do {
+cout << "** 비행기 좌석 예약 시스템 **" << endl;
+cout << "1. 신규 예약" << endl;
+cout << "2. 예약 변경" << endl;
+cout << "3. 프로그램 종료" << endl;
+cout << endl;
+cout << "번호를 입력하세요: ";
+cin >> a;
+} while (a != 1);
+
+if (a == 1); {
+cout << endl;
+cout << "1 2 3" << "\t" << "4 5 6" << endl;
+cout << "-------------" << endl;
+
+const int ROWS = 10;
+const int COLS = 7;
+
+for (int i = 0; i <= ROWS; i++) {
+for (int j = 0; j <= COLS; j++) {
+if (j == 3 || j == 4) {
+cout << " ";
+}
+else if (j == 6 && i == 2) {
+cout << "1 ";
+}
+else {
+cout << "0 ";
+}
+}
+cout << endl;
+}
+}
+
+cout << endl << "몇열, 몇번째 좌석을 예약하시겠습니까? : ";
+cin >> length >> width;
+
+int arr[10][6];
+for (int i = 0; i < 10; i++) {
+for (int j = 0; j < 6; j++) {
+if (j == 6 && i == 2) {
+cout << "이미 예약된 자리입니다. 다른 좌석을 선택해 주세요.";
+}
+else {
+cout << "예약 완료되었습니다.";
+}
+cout << endl;
+}
+
+if (a == 2); {
+cout << endl;
+cout << "1 2 3" << "\t" << "4 5 6" << endl;
+cout << "-------------" << endl;
+
+const int ROWS = 10;
+const int COLS = 7;
+
+for (int i = 0; i <= ROWS; i++) {
+for (int j = 0; j <= COLS; j++) {
+if (j == 3 || j == 4) {
+cout << " ";
+}
+else if (j == 6 && i == 2) {
+cout << "1 ";
+}
+else {
+cout << "0 ";
+}
+}
+cout << endl;
+}
+
+}
+
+cout << endl << "현재 좌석과 변경하고자 하는 좌석을 각각 열, 번호 순서로 입력해 주세요 :";
+cin >> length >> width >> new_length >> new_width;
+
+int arr[10][6];
+for (int i = 0; i < 10; i++) {
+for (int j = 0; j < 6; j++) {
+if (j == 6 && i == 2) {
+cout << "이미 예약된 자리입니다. 다른 좌석을 선택해 주세요.";
+}
+else {
+cout << "예약 완료되었습니다.";
+}
+cout << endl;
+}
+
+if (a == 3); {
+cout << "프로그램을 종료합니다." << endl;
+cout << endl;
+
+return 0;
+}
+}
+}
+}
+
+ 
