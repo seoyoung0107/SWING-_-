@@ -1,0 +1,68 @@
+1번 과제)
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;        /// 진처리기에 전달
+
+int main() {               /// 프로그램의 시작점, main함수는 오직 한개만 존재함.
+
+    srand(time(0));
+    int random_num = rand() % 100;
+
+    int n, multiple;
+
+    cout << "랜덤한 수: ";
+    cin >> random_num;
+
+    cout << "특정 배수 개수: ";
+    cin >> n;
+
+    cout << "1번째 특정 배수: ";
+    cin >> multiple;
+
+    cout << "<특정 배수만 출력하는 프로그램>" << endl;
+    for (int i = 1; i <= random_num; i++) {          /// 조건에 만족할 때까지 루프 반복. 조건에 만족하면 이후 문장 실행.(각 식을 세미콜론(;)으로 반드시 구분해주어야함.)
+        if (i % multiple == 0)    /// 주어진 조건을 만족하면 IF문이 실행됨.
+            cout << i << " ";
+        else                      /// 주어진 조건식이 거짓인 경우 ELSE문이 실행됨.
+            continue;             /// CONTINUE문은 이후 문장 실행하지 않고 반복문 시작으로 돌아감.
+    }
+    cout << endl;
+
+    cout << "<특정 배수 제외 출력하는 프로그램>" << endl;
+    for (int i = 1; i <= random_num; i++) {       /// 조건에 만족할 때까지 루프 반복. 조건에 만족하면 이후 문장 실행.(각 식을 세미콜론(;)으로 반드시 구분해주어야함.)
+        if (i % multiple != 0)    /// 주어진 조건을 만족하면 IF문이 실행됨.
+            cout << i << " ";
+        else                      /// 주어진 조건식이 거짓인 경우 ELSE문이 실행됨.
+            continue;             /// CONTINUE문은 이후 문장 실행하지 않고 반복문 시작으로 돌아감.
+    }
+    cout << endl;
+
+    cout << "2번째 특정 배수: ";
+    cin >> multiple;
+
+    cout << "<특정 배수만 출력하는 프로그램>" << endl;
+    for (int i = 1; i <= random_num; i++) {       /// 조건에 만족할 때까지 루프 반복. 조건에 만족하면 이후 문장 실행.(각 식을 세미콜론(;)으로 반드시 구분해주어야함.)
+        if (i % multiple == 0)     /// 주어진 조건을 만족하면 IF문이 실행됨.
+            cout << i << " ";
+        else                       /// 주어진 조건식이 거짓인 경우 ELSE문이 실행됨.
+            continue;              /// CONTINUE문은 이후 문장 실행하지 않고 반복문 시작으로 돌아감.
+    }
+    cout << endl;
+
+    cout << "<특정 배수 제외 출력하는 프로그램>" << endl;
+    for (int i = 1; i <= random_num; i++) {      /// 조건에 만족할 때까지 루프 반복. 조건에 만족하면 이후 문장 실행.(각 식을 세미콜론(;)으로 반드시 구분해주어야함.)
+        if (i % multiple != 0)     /// 주어진 조건을 만족하면 IF문이 실행됨.
+            cout << i << " ";
+        else                      /// 주어진 조건식이 거짓인 경우 ELSE문이 실행됨.
+            continue;            /// CONTINUE문은 이후 문장 실행하지 않고 반복문 시작으로 돌아감.
+    }
+    cout << endl;
+
+    return 0;       /// 실행중인 함수 종료.
+}
+
+
+ 
