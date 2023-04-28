@@ -1,0 +1,70 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+
+    srand(time(0));  
+    int random_num = rand() % 100;   //컴퓨터로부터 랜덤한 수를 지정받기
+
+    int n, multiple;
+
+    for (int j = 1; j <= 2; j++) { //코드 반복을 위한 for문 사용
+        random_num = rand() % 100; // 0~99까지의 랜덤한 수 지정
+
+        cout << "랜덤한 수: " << random_num << endl;
+
+        cout << "특정 배수 개수: ";
+        cin >> n;  //사용자로부터 특정 배수 개수 입력받음
+
+        cout << endl;
+
+        cout << "1번째 특정 배수: ";
+        cin >> multiple;
+
+        cout << "<특정 배수만 출력하는 프로그램>" << endl;
+        for (int i = 1; i <= random_num; i++) {  //1부터 랜덤한 수까지의 반복
+            if (i % multiple == 0)   //i가 multiple로 나누어 떨어지면 출력
+                cout << i << " ";
+            else                    //나누어 떨어지지 않으면 continue
+                continue;
+        }
+        cout << endl;
+
+        cout << "<특정 배수 제외 출력하는 프로그램>" << endl;
+        for (int i = 1; i <= random_num; i++) {   //1부터 랜덤한 수까지 반복
+            if (i % multiple != 0)               //i가 multiple로 나누어 떨어지지 않으면 출력
+                cout << i << " ";
+            else
+                continue;                       //나누어 떨어지지 않으면 continue
+        }
+        cout << endl;
+        cout << endl;
+
+        cout << "2번째 특정 배수: ";            //사용자로부터 두번째 특정 배수 입력받음
+        cin >> multiple;
+
+        cout << "<특정 배수만 출력하는 프로그램>" << endl;
+        for (int i = 1; i <= random_num; i++) {  //1부터 랜덤한 수까지 반복
+            if (i % multiple == 0)           //i가 multiple로 나누어 떨어지지 않으면 출력
+                cout << i << " ";
+            else
+                continue;                      //나누어 떨어지지 않으면 continue
+        }
+        cout << endl;
+
+        cout << "<특정 배수 제외 출력하는 프로그램>" << endl;
+        for (int i = 1; i <= random_num; i++) {   //1부터 랜덤한 수까지 반복
+            if (i % multiple != 0)               //i가 multiple로 나누어 떨어지지 않으면 출력
+                cout << i << " "; 
+            else
+                continue;                //나누어 떨어지지 않으면 continue
+        }
+        cout << endl;
+        cout << endl;
+    }
+
+    return 0;
+}
