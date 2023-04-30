@@ -1,0 +1,86 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int seat[10][6] = {};                              // 10 x 6 크기의 좌석 배열 초기화
+    int a, width, length, new_length, new_width;     // 메뉴 선택 변수
+
+    do {
+        cout << "** 비행기 좌석 예약 시스템 **" << endl;  // 메뉴 출력하기
+        cout << "1. 신규 예약" << endl;
+        cout << "2. 예약 변경" << endl;
+        cout << "3. 프로그램 종료" << endl;
+        cout << endl;
+        cout << "번호를 입력하세요: ";                // 메뉴 번호 입력받기
+        cin >> a;
+
+        if (a == 1) {                                   // 메뉴 1 선택할 때
+            cout << endl;
+            cout << "1 2 3" << "\t" << "4 5 6" << endl;
+            cout << "-------------" << endl;                    // 좌석 상태 출력
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 6; j++) {
+                    if (j == 3) 
+                        cout << "  ";
+                    cout << seat[i][j] << " ";
+                }
+                cout << endl;
+            }
+            cout << endl << "몇열, 몇번째 좌석을 예약하시겠습니까? : ";
+            cin >> length >> width;                // 예약할 좌석 입력 받기
+            if (seat[length - 1][width - 1] == 0) {               // 해당 좌석이 비어있는 경우
+                seat[length - 1][width - 1] = 1;                  // 변경된 좌석을 0에서 1로 바꾸기
+                cout << "좌석 예약이 완료되었습니다." << endl;
+            }
+            else {
+                cout << "이미 예약된 자리입니다. 다른 좌석을 선택해 주세요." << endl;          // 해당 좌석이 이미 예약되어 있는 경우
+            }
+        }
+        else if (a == 2) {                 // 메뉴 2 선택 할 때
+            cout << endl;
+            cout << "1 2 3" << "\t" << "4 5 6" << endl;
+            cout << "-------------" << endl;     // 현재 좌석 상태 출력받기
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 6; j++) {
+                    if (j == 3)
+                        cout << "  ";
+                    cout << seat[i][j] << " ";
+                }
+
+                cout << endl;
+            }
+            cout << endl << "현재 좌석과 변경하고자 하는 좌석을 각각 열, 번호 순서로 입력해 주세요: ";   //변경할 좌석과 현재 좌석 입력 받기
+            cin >> length >> width >> new_length >> new_width;
+            if (length < 1 || length > 10 || width < 1 || width > 5 || new_length < 1 || new_length > 10 || new_width < 1 || new_width > 5) {
+                cout << "입력이 잘못되었습니다. 다시 입력해주세요." << endl;                     // 좌석을 잘못 입력할 경우
+            }
+            else if (seat[new_length - 1][new_width - 1] != 0) {                                 // 변경할 좌석이 이미 예약되어있는 경우
+                cout << "변경할 좌석이 이미 예약되었습니다. 다른 좌석을 선택해주세요." << endl;
+            }
+            else {
+                seat[new_length - 1][new_width - 1] = seat[length - 1][width - 1];              // 올바르게 좌석 변경이 될 경우
+                seat[length - 1][width - 1] = 0;
+                cout << "좌석 변경이 완료되었습니다." << endl;
+            }
+            cout << endl;                                                                      // 변경된 좌석표 출력받기
+            cout << "1 2 3" << "\t" << "4 5 6" << endl;
+            cout << "-------------" << endl;
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 6; j++) {
+                    if (j == 3)
+                        cout << "  ";
+                    cout << seat[i][j] << " ";
+                }
+                cout << endl;
+            }
+            cout << endl;
+        }
+        else if (a == 3) {                                                                // 메뉴 3 선택 할 때 while 루프를 빠져나가 프로그램을 종료
+            cout << "프로그램을 종료합니다." << endl;
+        }
+        else { cout << "올바른 숫자를 입력해 주세요." << endl; }
+        } while (a != 3);
+
+        return 0;
+    }
