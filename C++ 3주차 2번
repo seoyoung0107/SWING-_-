@@ -1,0 +1,139 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct User {                     //사용자의 정보를 담는 구조체를 선언함
+    string name;                  //이름
+    string id;                    //아이디
+    string password;              //비밀번호
+}; 
+User users[50];                   // 최대 50명의 회원 정보 저장 가능하도록 함
+int numUsers = 0;                 // 등록되 회원 수
+
+void registerAccount()            // 회원가입 함수 구현
+{
+    User newUser;                 // 새로운 사용자 정보를 담을 구조체를 선언함
+    cout << "이름을 입력하세요: ";
+    cin >> newUser.name;
+    cout << "아이디를 입력하세요: ";
+    cin >> newUser.id;
+    cout << "비밀번호를 입력하세요: ";
+    cin >> newUser.password;
+
+    users[numUsers] = newUser;          // 회원 정보 배열에 새로운 사용자 정보 저장함
+    numUsers++;
+
+    cout << "===== 회원가입 성공 =====" << endl;         //회원가입 완료 메시지 출력
+    cout << endl;
+}
+
+void login()                              //로그인 함수 구현
+{
+    cout << "*********** swing 은행 **********" << endl;
+    cout << "1. 회원가입" << endl;
+    cout << "2. 로그인" << endl;
+    cout << endl;
+    cout << "번호를 입력하세요 >> ";
+    
+    int choice;                     //사용자의 선택 번호를 입력 받음
+    cin >> choice;
+    // 선택에 따른 동작 실행
+    if (choice == 1){
+        cout << endl;
+        registerAccount();                  //회원가입 함수 호출
+        login();                            // 다시 로그인 화면 출력시킴
+    }
+    else if (choice == 2){
+        string id, passwd;
+        cout << endl;
+        cout << "아이디를 입력하세요: ";
+        cin >> id;
+        cout << "비밀번호를 입력하세요: ";
+        cin >> passwd;
+
+        bool found = false;                  //등록된 회원 정보 중에 일치하는 정보가 있는지 확인하도록함
+        for (int i = 0;i < numUsers;i++) {
+            if (users[i].id == id && users[i].password == passwd) {
+                found = true;
+                break;
+            }
+        }
+        if (found) {                       // 일치하는 회원 정보 있으면 로그인 성공 메시지 출력함
+            cout << endl;
+            cout << "===== 로그인 성공 =====" << endl;
+            cout << endl;
+            cout << users[numUsers-1].name << "님 환영합니다." << endl;
+            cout << endl;
+        }
+        else {
+            cout << endl;                  //일치하는 회원 정보가 없으면 로그인 실패 메시지를 출력하고 다시 로그인하도록 로그인 화면 출력함
+            cout << "아이디 혹은 비밀번호가 틀렸습니다." << endl;
+            cout << endl;
+            login();
+        }
+    }
+    else{
+        cout << endl;                   //1,2 이외의 선택지를 입력할 시 
+        cout << "잘못된 번호를 입력하셨습니다." << endl;
+        login();
+    }
+}
+int deposit = 5000, savings = 4000, housing = 0, stock = 10;  //각 정보를 변수에 할당함
+int total_money = deposit + savings + housing + stock;        //자산 합계를 계산하여 변수에 할당함
+
+void myaccount(int deposit, int savings, int housing, int stock)    //각 정보를 매개변수로 받음
+{
+    cout << "------------------ swing 계좌 정보 ------------------" << endl;
+    cout << "|   " << "예금" << "   |   " << "적금" << "   |   " << "주택청약" << "   |   " << "주식계좌" << "   |" << endl;
+    cout << "|   " << deposit << "   |   " << savings << "   |       " << housing << "      |      " << stock << "      |" << endl;
+    cout << "-----------------------------------------------------" << endl;
+    cout << endl;
+}
+
+int total()      //총 자산 출력 함수 구현
+{
+    int total_money = deposit + savings + housing + stock;
+    cout << "현재 swing 자산관리 서비스에 등록된 회원님의 총 자산은 " << total_money <<"원 입니다." << endl;
+    cout << endl;
+    return total_money;    //총 자산 반환
+}
+
+void service() {       //서비스 함수 정의
+    int menu = 0;      //사용자가 선택한 메뉴 번호를 저장할 변수 초기화함
+    while (menu != 3) {  //3을 선택하기 전까지 메뉴를 반복해서 제공함
+        cout << "********** swing 자산 관리 서비스 **********" << endl;
+        cout << "1. 계좌 정보 출력" << endl;
+        cout << "2. 총 자산 출력" << endl;
+        cout << "3. 로그아웃" << endl;
+        cout << endl;
+        cout << "번호를 입력하세요 >> ";
+
+        cin >> menu;         //사용자가 입력한 번호를 받음    
+
+        if (menu == 1) {      //1번 선택할 경우
+            cout << endl;
+            myaccount(deposit, savings, housing, stock);
+        }
+        else if (menu == 2) {  //2번 선택할 경우
+            cout << endl;
+            total();
+        }
+        else if (menu == 3) {   //3번 선택할 경우
+            cout << endl;
+            cout << "====== 로그아웃 =====" << endl;
+            cout << endl;
+            cout << "로그아웃 되었습니다. 안녕히 가세요.";
+        }
+        else {         //잘못된 번호를 입력한 경우
+            cout << endl;
+            cout << "잘못된 입력입니다. 다시 입력해주세요." << endl;
+        }
+    }
+}
+
+int main()
+{
+	login();       //login 함수 호출
+    service();     //service 함수 호출
+	return 0;      //프로그램 종료
+}
