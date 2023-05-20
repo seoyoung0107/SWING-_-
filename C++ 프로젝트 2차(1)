@@ -1,0 +1,128 @@
+#include <iostream>
+#include <string>
+#include <map>
+using namespace std;
+
+struct Account {
+    string username;
+    string id;
+    string password;
+    double balance;
+};
+
+map<string, Account> accountMap;
+
+void loginMenu() {
+    cout << "*********** 2023 가계부 ***********" << endl;
+    cout << "1. 회원가입" << endl;
+    cout << "2. 로그인" << endl;
+    cout << endl;
+    cout << "번호를 입력하세요: ";
+}
+
+void registerAccount() {
+    string username, id, password;
+    cout << endl;
+    cout << "회원가입 페이지" << endl;
+    cout << "이름: ";
+    cin >> username;
+    cout << "아이디: ";
+    cin >> id;
+    cout << "비밀번호: ";
+    cin >> password;
+    accountMap[id] = { username,id, password, 0.0 };
+    cout << "*********** 회원가입 완료 ***********" << endl;
+    cout << endl;
+}
+
+Account* login() {
+    string id, passwd;
+    cout << endl;
+    cout << "로그인 페이지" << endl;
+    cout << "아이디를 입력하세요: ";
+    cin >> id;
+    cout << "비밀번호를 입력하세요: ";
+    cin >> passwd;
+
+    if (accountMap.count(id) == 0 || accountMap[id].password != passwd) {
+        cout << endl;
+        cout << "아이디 혹은 비밀번호가 틀렸습니다." << endl;
+        cout << endl;
+        return nullptr;
+    }
+    else {
+        cout << endl;
+        cout << "********** 로그인 성공 **********" << endl;
+        cout << endl;
+        return &accountMap[id];
+    }
+}
+
+void printMenu(const string& username) {
+    cout << "*********** " << username << "님의 2023 가계부 **********" << endl;
+    cout << endl;
+    cout << "1. 지출/수입 내역 기록" << endl;
+    cout << "2. 카테고리 설정" << endl;
+    cout << "3. 지출 조회" << endl;
+    cout << "4. 목표 지출 설정" << endl;
+    cout << "5. 로그아웃" << endl;
+    cout << endl;
+    cout << "번호를 입력하세요: ";
+}
+
+void financialMenu(Account& account) {
+    int choice;
+    while (true) {
+        printMenu(account.username);
+        cin >> choice;
+        switch (choice) {
+        case 1:
+            // 지출/수입 내역 기록 기능 구현
+            break;
+        case 2:
+            // 카테고리 설정 기능 구현
+            break;
+        case 3:
+            // 지출 조회 기능 구현
+            break;
+        case 4:
+            // 목표 지출 설정 기능 구현
+            break;
+        case 5:
+            cout << "로그아웃 되었습니다." << endl;
+            return;
+        default:
+            cout << "잘못된 선택입니다." << endl;
+            break;
+        }
+    }
+}
+int main() {
+    int choice;
+    Account* currentAccount = nullptr;
+    while (true) {
+        loginMenu();
+        cin >> choice;
+        switch (choice) {
+        case 1:
+            registerAccount();
+            break;
+        case 2:
+            currentAccount = login();
+            if (currentAccount != nullptr) {
+
+                financialMenu(*currentAccount);
+            }
+            break;
+        default:
+            cout << endl;
+            cout << "잘못된 선택입니다." << endl;
+            cout << endl;
+            break;
+        }
+    }
+    return 0;
+}
+
+
+
